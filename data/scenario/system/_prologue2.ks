@@ -1,0 +1,6 @@
+[preload  storage="./data/bgimage/waza08.webp"  ]
+[preload  storage="./data/bgimage/waza09.webp"  ]
+[preload  storage="./data/bgimage/waza10.webp"  ]
+[preload  storage="./data/bgimage/waza11.webp"  ]
+[preload  storage="./data/bgimage/waza12.webp"  ]
+[return]

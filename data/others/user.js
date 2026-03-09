@@ -1,0 +1,1 @@
+tyrano.plugin.kag.key_mouse.swipe_down = function(){};

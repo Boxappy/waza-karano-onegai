@@ -1,0 +1,301 @@
+[_tb_system_call storage=system/_scene1.ks]
+
+[cm  ]
+[tb_hide_message_window  ]
+[bg  storage="wazaphone.webp"  time="500"  method="fadeInUp"  ]
+[tb_start_tyrano_code]
+[iscript]
+//変数初期化（ステージが始まる度に，f.stage除く）
+f.a1 = 0;
+f.a2 = 0;
+f.a3 = 0;
+f.a4 = 0;
+f.t1 = 0;
+f.t2 = 0;
+f.t3 = 0;
+f.t4 = 0;
+f.hit = 0;
+f.blow = 0;
+f.try = 0;
+[endscript]
+[freeimage layer="2"]
+[_tb_end_tyrano_code]
+
+[tb_start_tyrano_code]
+;正解設定（ステージ開始時）
+[eval exp="f.a1 = Math.floor(Math.random() * 2) + 1"]
+[eval exp="f.a2 = Math.floor(Math.random() * 2) + 1"]
+[eval exp="f.a3 = Math.floor(Math.random() * 2) + 1"]
+[eval exp="f.a4 = Math.floor(Math.random() * 2) + 1"]
+
+[if exp="f.a1 == 1" ]
+[eval exp="f.a1 = 'わ' "]
+[elsif exp="f.a1 == 2"]
+[eval exp="f.a1 = 'ざ' "]
+[endif]
+
+[if exp="f.a2 == 1" ]
+[eval exp="f.a2 = 'わ' "]
+[elsif exp="f.a2 == 2"]
+[eval exp="f.a2 = 'ざ' "]
+[endif]
+
+[if exp="f.a3 == 1" ]
+[eval exp="f.a3 = 'わ' "]
+[elsif exp="f.a3 == 2"]
+[eval exp="f.a3 = 'ざ' "]
+[endif]
+
+[if exp="f.a4 == 1" ]
+[eval exp="f.a4 = 'わ' "]
+[elsif exp="f.a4 == 2"]
+[eval exp="f.a4 = 'ざ' "]
+[endif]
+[_tb_end_tyrano_code]
+
+*0
+
+[tb_start_tyrano_code]
+;数字を回答欄に表示
+[layopt layer="1" visible="true"]
+[if exp="f.t1 != 0" ]
+[ptext layer="1" text=" &f.t1 " x=" 65 " y=" 140 " color=" white " edge="  " bold=" bold " size=" 80 " name=" 1 "]
+[endif]
+[if exp="f.t2 != 0" ]
+[ptext layer="1" text=" &f.t2 " x=" 210 " y=" 140 " color=" white " edge="  " bold=" bold " size=" 80 " name=" 2 "]
+[endif]
+[if exp="f.t3 != 0" ]
+[ptext layer="1" text=" &f.t3 " x=" 355 " y=" 140 " color=" white " edge="  " bold=" bold " size=" 80 " name=" 3 "]
+[endif]
+[if exp="f.t4 != 0" ]
+[ptext layer="1" text=" &f.t4 " x=" 500 " y=" 140 " color=" white " edge="  " bold=" bold " size=" 80 " name=" 4 "]
+[endif]
+[_tb_end_tyrano_code]
+
+[tb_start_tyrano_code]
+[if exp="f.t4 != 0" ]
+[jump storage="scene1.ks" target=" result "]
+[endif]
+[_tb_end_tyrano_code]
+
+[clickable  storage="scene1.ks"  x="141"  y="355"  width="118"  height="120"  target="*1"  _clickable_img=""  ]
+[clickable  storage="scene1.ks"  x="379"  y="357"  width="118"  height="120"  target="*2"  _clickable_img=""  ]
+[clickable  storage="scene1.ks"  x="498"  y="861"  width="86"  height="50"  target="*delete"  _clickable_img=""  ]
+[clickable  storage="scene1.ks"  x="52"  y="867"  width="100"  height="45"  target="*memo"  _clickable_img=""  ]
+[s  ]
+*1
+
+[tb_start_tyrano_code]
+;1ボタンを押すと（1タグの中）
+[if exp="f.t1 == 0" ]
+[eval exp="f.t1 = 'わ' "]
+[elsif exp="f.t2 == 0"]
+[eval exp="f.t2 = 'わ' "]
+[elsif exp="f.t3 == 0 "]
+[eval exp="f.t3 = 'わ' "]
+[elsif exp="f.t4 == 0 "]
+[eval exp="f.t4 = 'わ' "]
+[endif]
+[_tb_end_tyrano_code]
+
+[jump  storage="scene1.ks"  target="*0"  ]
+*2
+
+[tb_start_tyrano_code]
+;2ボタンを押すと（2タグの中）
+[if exp="f.t1 == 0" ]
+[eval exp="f.t1 = 'ざ' "]
+[elsif exp="f.t2 == 0"]
+[eval exp="f.t2 = 'ざ' "]
+[elsif exp="f.t3 == 0 "]
+[eval exp="f.t3 = 'ざ' "]
+[elsif exp="f.t4 == 0 "]
+[eval exp="f.t4 = 'ざ' "]
+[endif]
+[_tb_end_tyrano_code]
+
+[jump  storage="scene1.ks"  target="*0"  ]
+*delete
+
+[tb_start_tyrano_code]
+;×ボタンを押すと（×タグの中）
+[if exp="f.t4 != 0"]
+[eval exp="f.t4 = 0"]
+[free layer="1" name="4"]
+[elsif exp="f.t3 != 0"]
+[eval exp="f.t3 = 0"]
+[free layer="1" name="3"]
+[elsif exp="f.t2 != 0"]
+[eval exp="f.t2 = 0"]
+[free layer="1" name="2"]
+[elsif exp="f.t1 != 0"]
+[eval exp="f.t1 = 0"]
+[free layer="1" name="1"]
+[endif]
+[_tb_end_tyrano_code]
+
+[jump  storage="scene1.ks"  target="*0"  ]
+*result
+
+[tb_start_tyrano_code]
+;正誤計算（数字ボタン押して4桁決まったら自動で）
+[iscript]
+f.hit = 0;
+[endscript]
+
+[if exp=" f.t1 == f.a1 "]
+[eval exp=" f.hit = f.hit + 1 "]
+[endif]
+[if exp=" f.t2 == f.a2 "]
+[eval exp=" f.hit = f.hit + 1 "]
+[endif]
+[if exp=" f.t3 == f.a3 "]
+[eval exp=" f.hit = f.hit + 1 "]
+[endif]
+[if exp=" f.t4 == f.a4 "]
+[eval exp=" f.hit = f.hit + 1 "]
+[endif]
+
+
+[eval exp=" f.try = f.try + 1 "]
+[_tb_end_tyrano_code]
+
+[tb_start_tyrano_code]
+[if exp=" f.hit == 4 "]
+[jump storage="prologue1.ks" target="  "]
+[endif]
+[_tb_end_tyrano_code]
+
+[tb_start_tyrano_code]
+;hit blow スマホ表示（正誤計算後）
+[layopt layer="1" visible="true"]
+[freeimage layer="1"]
+[if exp=" f.try >= 1 && f.try <= 9 "]
+[ptext layer="1" text="個合っています" x=" 245 " y=" 280 " color=" white " edge="  " bold=" bold " size=" 25 " name=" result "]
+[ptext layer="1" text="&f.hit" x=" 225 " y=" 280 " color=" white " edge="  " bold=" bold " size=" 25 " name=" result "]
+[elsif exp="f.try == 10"]
+[ptext layer="1" text=" 1年後にやり直してください " x=" 155 " y=" 280 " color=" white " edge="  " bold=" bold " size=" 25 " name=" result "]
+[quake count="3" time="300" hmax="2" ]
+[l]
+[freeimage layer="1"]
+[bg storage="black.webp" time=0 method=" "]
+[l]
+[jump storage="title_screen.ks" target="  "]
+[endif]
+
+
+[_tb_end_tyrano_code]
+
+[tb_start_tyrano_code]
+[layopt layer="2" visible="false"]
+[if exp=" f.try == 1 "]
+[ptext layer="2" text="&f.t1" x=" 40 " y=" 150 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t2" x=" 90 " y=" 150 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t3" x=" 140 " y=" 150 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t4" x=" 190 " y=" 150 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.hit" x=" 450 " y=" 150 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[endif]
+[if exp=" f.try == 2 "]
+[ptext layer="2" text="&f.t1" x=" 40 " y=" 220 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t2" x=" 90 " y=" 220 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t3" x=" 140 " y=" 220 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t4" x=" 190 " y=" 220 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.hit" x=" 450 " y=" 220 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+
+[endif]
+[if exp=" f.try == 3 "]
+[ptext layer="2" text="&f.t1" x=" 40 " y=" 290 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t2" x=" 90 " y=" 290 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t3" x=" 140 " y=" 290 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t4" x=" 190 " y=" 290 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.hit" x=" 450 " y=" 290 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+
+[endif]
+[if exp=" f.try == 4 "]
+[ptext layer="2" text="&f.t1" x=" 40 " y=" 360 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t2" x=" 90 " y=" 360 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t3" x=" 140 " y=" 360 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t4" x=" 190 " y=" 360 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.hit" x=" 450 " y=" 360 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+
+[endif]
+[if exp=" f.try == 5 "]
+[ptext layer="2" text="&f.t1" x=" 40 " y=" 430 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t2" x=" 90 " y=" 430 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t3" x=" 140 " y=" 430 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t4" x=" 190 " y=" 430 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.hit" x=" 450 " y=" 430 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+
+[endif]
+[if exp=" f.try == 6 "]
+[ptext layer="2" text="&f.t1" x=" 40 " y=" 500 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t2" x=" 90 " y=" 500 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t3" x=" 140 " y=" 500 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t4" x=" 190 " y=" 500 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.hit" x=" 450 " y=" 500 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+
+[endif]
+[if exp=" f.try == 7 "]
+[ptext layer="2" text="&f.t1" x=" 40 " y=" 570 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t2" x=" 90 " y=" 570 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t3" x=" 140 " y=" 570 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t4" x=" 190 " y=" 570 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.hit" x=" 450 " y=" 570 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+
+[endif]
+[if exp=" f.try == 8 "]
+[ptext layer="2" text="&f.t1" x=" 40 " y=" 640 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t2" x=" 90 " y=" 640 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t3" x=" 140 " y=" 640 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t4" x=" 190 " y=" 640 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.hit" x=" 450 " y=" 640 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+
+[endif]
+[if exp=" f.try == 9 "]
+[ptext layer="2" text="&f.t1" x=" 40 " y=" 710 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t2" x=" 90 " y=" 710 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t3" x=" 140 " y=" 710 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.t4" x=" 190 " y=" 710 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+[ptext layer="2" text="&f.hit" x=" 450 " y=" 710 " color=" black " edge="  " bold="  " size=" 50 " name=" memo "]
+
+[endif]
+[_tb_end_tyrano_code]
+
+[quake  time="300"  count="3"  hmax="2"  wait="true"  ]
+[l  ]
+[tb_start_tyrano_code]
+[iscript]
+//変数初期化（回答する度に）
+f.t1 = 0;
+f.t2 = 0;
+f.t3 = 0;
+f.t4 = 0;
+[endscript]
+[_tb_end_tyrano_code]
+
+[tb_start_tyrano_code]
+[if exp=" f.try >= 1 && f.try <= 9 "]
+[freeimage layer="1"]
+[eval exp=" f.alert =  10 - f.try "]
+[ptext layer="1" text="&f.alert" x=" 175 " y=" 280 " color=" white " edge="  " bold=" bold " size=" 25 " name=" alert "]
+[ptext layer="1" text=" あと　回間違えるとロックされます " x=" 120 " y=" 280 " color=" white " edge="  " bold=" bold " size=" 25 " name=" alert "]
+[endif]
+[_tb_end_tyrano_code]
+
+[jump  storage="scene1.ks"  target="*0"  ]
+*memo
+
+[tb_start_tyrano_code]
+[layopt layer="1" visible="false"]
+[layopt layer="2" visible="true"]
+[_tb_end_tyrano_code]
+
+[tb_image_show  time="0"  storage="default/memo0.webp"  width="640"  height="960"  x="0"  y="0"  _clickable_img=""  ]
+[l  ]
+[tb_image_hide  time="0"  ]
+[tb_start_tyrano_code]
+[layopt layer="1" visible="true"]
+[layopt layer="2" visible="false"]
+[_tb_end_tyrano_code]
+
+[jump  storage="scene1.ks"  target="*0"  ]
