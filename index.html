@@ -8,7 +8,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 <meta name="robots" content="noindex,nofollow" />
 
-<!-- GitHub Pages パス対策 -->
 <base href="./">
 
 <link href="./tyrano/tyrano.css" rel="stylesheet" />
@@ -38,23 +37,18 @@ try{
 <script src="./tyrano/libs/jquery.a3d.js"></script>
 <script src="./tyrano/libs/jsrender.min.js"></script>
 
-<!-- alertify -->
 <link href="./tyrano/libs/alertify/alertify.core.css" rel="stylesheet" />
 <link href="./tyrano/libs/alertify/alertify.default.css" rel="stylesheet" />
 <script src="./tyrano/libs/alertify/alertify.min.js"></script>
 
-<!-- remodal -->
 <link href="./tyrano/libs/remodal/remodal.css" rel="stylesheet" />
 <link href="./tyrano/libs/remodal/remodal-default-theme.css" rel="stylesheet" />
 <script src="./tyrano/libs/remodal/remodal.js"></script>
 
-<!-- html2canvas -->
 <script src="./tyrano/libs/html2canvas.js"></script>
 
-<!-- KeyConfig -->
 <script src="./data/system/KeyConfig.js"></script>
 
-<!-- tyrano -->
 <script src="./tyrano/lang.js"></script>
 <script src="./tyrano/libs.js"></script>
 <script src="./tyrano/tyrano.js"></script>
@@ -77,7 +71,6 @@ try{
 <script src="./tyrano/plugins/kag/kag.tag_three.js"></script>
 <script src="./tyrano/plugins/kag/kag.tag.js"></script>
 
-<!-- Others -->
 <link href="./tyrano/libs/textillate/assets/animate.css" rel="stylesheet" />
 <script src="./tyrano/libs/textillate/assets/jquery.lettering.js"></script>
 <script src="./tyrano/libs/textillate/jquery.textillate.js"></script>
@@ -87,6 +80,11 @@ try{
 <script src="./tyrano/libs/anime.min.js"></script>
 <script src="./tyrano/libs/lz-string.min.js"></script>
 
+<!-- ★エラーpopupを完全に消す -->
+<script>
+window.alert = function(){};
+</script>
+
 </head>
 
 <body onselectstart="return false" oncontextmenu="return false">
@@ -94,10 +92,8 @@ try{
 <div id="tyrano_base" class="tyrano_base" style="overflow:hidden"></div>
 <div id="vchat_base" class="vchat_base" style="overflow:hidden"></div>
 
-<!-- 最初のシナリオ指定 -->
 <input type="hidden" id="first_scenario_file" value="./data/scenario/first.ks">
 
-<!-- モーダル -->
 <div class="remodal-bg"></div>
 
 <div
