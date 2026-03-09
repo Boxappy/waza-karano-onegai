@@ -13,25 +13,23 @@
 <link href="./tyrano/tyrano.css" rel="stylesheet" />
 <link href="./tyrano/libs/jquery-ui/jquery-ui.css" rel="stylesheet" />
 
-<!-- jQuery -->
 <script src="./tyrano/libs/jquery-3.6.0.min.js"></script>
 
 <script>
-try {
-    window.jQuery = window.$ = require("./tyrano/libs/jquery-3.6.0.min.js");
-} catch (e) {}
+try{
+window.jQuery = window.$ = require("./tyrano/libs/jquery-3.6.0.min.js");
+}catch(e){}
 
 try{
-    if(window.studio_api){
-        window.process = window.studio_api.ipcRenderer.sendSync("getProcess");
-    }else if (window.opener && window.opener.window.studio_api){
-        window.studio_api = window.opener.window.studio_api;
-        window.process = window.opener.window.studio_api.ipcRenderer.sendSync("getProcess");
-    }
+if(window.studio_api){
+window.process = window.studio_api.ipcRenderer.sendSync("getProcess");
+}else if(window.opener && window.opener.window.studio_api){
+window.studio_api = window.opener.window.studio_api;
+window.process = window.opener.window.studio_api.ipcRenderer.sendSync("getProcess");
+}
 }catch(e){}
 </script>
 
-<!-- jQuery Plugins -->
 <script src="./tyrano/libs/jquery-migrate-1.4.1.js"></script>
 <script src="./tyrano/libs/jquery-ui/jquery-ui.min.js"></script>
 <script src="./tyrano/libs/jquery.a3d.js"></script>
@@ -80,9 +78,25 @@ try{
 <script src="./tyrano/libs/anime.min.js"></script>
 <script src="./tyrano/libs/lz-string.min.js"></script>
 
-<!-- ★エラーpopupを完全に消す -->
+<!-- GitHub Pages パス修正 -->
 <script>
-window.alert = function(){};
+(function(){
+const repo = location.pathname.split("/")[1];
+if(repo){
+const oldFetch = window.fetch;
+window.fetch = function(url,opt){
+if(typeof url==="string" && url.startsWith("/data")){
+url="/" + repo + url;
+}
+return oldFetch(url,opt);
+};
+}
+})();
+</script>
+
+<!-- alertエラー非表示 -->
+<script>
+window.alert=function(){};
 </script>
 
 </head>
@@ -103,7 +117,6 @@ data-remodal-options="hashTracking:false,closeOnEscape:false,closeOnOutsideClick
 >
 
 <h1 class="remodal_title"></h1>
-
 <p class="remodal_txt"></p>
 
 <br>
