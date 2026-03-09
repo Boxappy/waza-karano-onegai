@@ -8,6 +8,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 <meta name="robots" content="noindex,nofollow" />
 
+<!-- GitHub Pages パス対策 -->
+<base href="./">
+
 <link href="./tyrano/tyrano.css" rel="stylesheet" />
 <link href="./tyrano/libs/jquery-ui/jquery-ui.css" rel="stylesheet" />
 
@@ -16,23 +19,16 @@
 
 <script>
 try {
-window.jQuery = window.$ = require("./tyrano/libs/jquery-3.6.0.min.js");
+    window.jQuery = window.$ = require("./tyrano/libs/jquery-3.6.0.min.js");
 } catch (e) {}
 
 try{
-
-if(window.studio_api){
-
-window.studio_api = window.studio_api;
-window.process = window.studio_api.ipcRenderer.sendSync("getProcess");
-
-}else if (window.opener && window.opener.window.studio_api) {
-
-window.studio_api = window.opener.window.studio_api;
-window.process = window.opener.window.studio_api.ipcRenderer.sendSync("getProcess");
-
-}
-
+    if(window.studio_api){
+        window.process = window.studio_api.ipcRenderer.sendSync("getProcess");
+    }else if (window.opener && window.opener.window.studio_api){
+        window.studio_api = window.opener.window.studio_api;
+        window.process = window.opener.window.studio_api.ipcRenderer.sendSync("getProcess");
+    }
 }catch(e){}
 </script>
 
@@ -95,10 +91,10 @@ window.process = window.opener.window.studio_api.ipcRenderer.sendSync("getProces
 
 <body onselectstart="return false" oncontextmenu="return false">
 
-<div id="tyrano_base" class="tyrano_base" style="overflow:hidden" unselectable="on"></div>
-<div id="vchat_base" class="vchat_base" style="overflow:hidden" unselectable="on"></div>
+<div id="tyrano_base" class="tyrano_base" style="overflow:hidden"></div>
+<div id="vchat_base" class="vchat_base" style="overflow:hidden"></div>
 
-<!-- ★ここが重要：最初のシナリオ指定 -->
+<!-- 最初のシナリオ指定 -->
 <input type="hidden" id="first_scenario_file" value="./data/scenario/first.ks">
 
 <!-- モーダル -->
