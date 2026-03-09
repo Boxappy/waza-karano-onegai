@@ -99,3 +99,5 @@
 ;useGamepad=false
 ;useCloseConfirm=true
 ;offscreenClickable=true
+; GitHub Pages用 タイトル画面読み込み停止
+titleScenario = ""
